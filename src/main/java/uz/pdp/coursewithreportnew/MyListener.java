@@ -13,6 +13,5 @@ public class MyListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         EMF = Persistence.createEntityManagerFactory("default");
-
     }
 }
