@@ -49,7 +49,7 @@
             <td><%=course.getId()%></td>
             <td><%=course.getName()%></td>
             <td>
-                <form action="#">
+                <form action="/module.jsp">
                     <input type="hidden" value="<%=course.getId()%>" name="id">
                     <button class="btn btn-primary">Modules</button>
                 </form>
