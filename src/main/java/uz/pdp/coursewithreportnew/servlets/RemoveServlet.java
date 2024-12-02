@@ -21,7 +21,7 @@ public class RemoveServlet extends HttpServlet {
                 ) {
             int id = Integer.parseInt(req.getParameter("id"));
             entityManager.getTransaction().begin();
-            Course course = entityManager.find(Course.class, id);
+            Course course = entityManager.find(Course.class , id);
             entityManager.remove(course);
             entityManager.getTransaction().commit();
             resp.sendRedirect("/course.jsp");
