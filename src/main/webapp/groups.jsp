@@ -54,9 +54,9 @@
     <tr>
       <td><%= group.getId() %></td>
       <td><%= group.getName() %></td>
-      <td><%= group.getModules() != null ? group.getModules().getId() : "N/A" %></td>
+      <td><%=group.getModules().getId()%></td>
       <td>
-        <form action="students.jsp" method="post">
+        <form action="student.jsp" method="post">
           <input type="hidden" name="id" value="<%= group.getId() %>">
           <button class="btn btn-primary">Students</button>
         </form>

@@ -21,7 +21,7 @@
 <div class="row">
     <div class="col-6">
         <form action="/add/modules" method="post">
-            <div class="input-group">
+            <div class="input group">
                 <input type="text" name="name" placeholder="Enter modules name" class="form-control">
                 <input type="hidden" name="courseId" value="<%= id %>">
                 <button class="btn btn-primary">Add</button>
@@ -51,6 +51,7 @@
         <td><%= modules.getCourse().getId() %></td>
         <td>
             <form action="/groups.jsp">
+
                 <input type="hidden" name="id" value="<%= modules.getId() %>">
                 <button class="btn btn-primary">Group</button>
             </form>

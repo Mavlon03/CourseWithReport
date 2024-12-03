@@ -1,7 +1,8 @@
 package uz.pdp.coursewithreportnew.servlets;
 
 import jakarta.persistence.EntityManager;
-import uz.pdp.coursewithreportnew.classes.Course;
+import uz.pdp.coursewithreportnew.classes.Groups;
+import uz.pdp.coursewithreportnew.classes.Student;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,22 +13,24 @@ import java.io.IOException;
 
 import static uz.pdp.coursewithreportnew.MyListener.EMF;
 
-@WebServlet("/add/course")
-public class AddCourseServlet extends HttpServlet {
+@WebServlet("/add/student")
+public class AddStudentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
         try(
-                EntityManager entityManager = EMF.createEntityManager();
+                EntityManager entityManager = EMF.createEntityManager()
                 ) {
             entityManager.getTransaction().begin();
             String name = req.getParameter("name");
-            Course course = new Course();
-            course.setName(name);
-            entityManager.persist(course);
+            int groupId = Integer.parseInt(req.getParameter("groupId"));
+            Groups groups = entityManager.find(Groups.class, groupId);
+            Student student = new Student();
+            student.setName(name);
+            student.setGroups(groups);
+            entityManager.persist(student);
             entityManager.getTransaction().commit();
-            resp.sendRedirect("/course.jsp");
+            resp.sendRedirect("/student.jsp?id=" + groupId);
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

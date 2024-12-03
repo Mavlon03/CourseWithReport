@@ -30,7 +30,6 @@ public class AddGroupsServlet extends HttpServlet {
             entityManager.persist(groups);
             entityManager.getTransaction().commit();
             resp.sendRedirect("/groups.jsp");
-
         }
     }
 }
