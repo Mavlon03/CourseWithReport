@@ -57,9 +57,9 @@
       <td><%= student.getName() %></td>
       <td><%= student.getGroups().getId()%></td>
       <td>
-        <form action="#">
+        <form action="/payment.jsp">
           <input type="hidden" name="id" value="<%= student.getId()%>">
-          <button class="btn btn-primary">Report</button>
+          <button class="btn btn-primary">Payment</button>
         </form>
       </td>
     </tr>
