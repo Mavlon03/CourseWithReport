@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="uz.pdp.coursewithreportnew.repositories.ModuleRepo" %>
-<%@ page import="uz.pdp.coursewithreportnew.classes.Module" %>
+<%@ page import="uz.pdp.coursewithreportnew.classes.Modules" %>
+<%@ page import="uz.pdp.coursewithreportnew.classes.Modules" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -10,7 +11,7 @@
 <body>
 <%
     String id = request.getParameter("id");
-    List<Module> modulesList = null;
+    List<Modules> modulesList = null;
 
     if (id != null) {
         modulesList = ModuleRepo.getModuleByCourseId(Integer.parseInt(id));
@@ -19,9 +20,9 @@
 
 <div class="row">
     <div class="col-6">
-        <form action="/add/module" method="post">
+        <form action="/add/modules" method="post">
             <div class="input-group">
-                <input type="text" name="name" placeholder="Enter module name" class="form-control">
+                <input type="text" name="name" placeholder="Enter modules name" class="form-control">
                 <input type="hidden" name="courseId" value="<%= id %>">
                 <button class="btn btn-primary">Add</button>
             </div> <!-- Yopish tegi -->
@@ -42,17 +43,17 @@
     <tbody>
     <%
         if (modulesList != null) {
-            for (Module module : modulesList) {
+            for (Modules modules : modulesList) {
     %>
     <tr>
-        <td><%= module.getId() %></td>
-        <td><%= module.getName() %></td>
-        <td><%= module.getCourse().getId() %></td>
+        <td><%= modules.getId() %></td>
+        <td><%= modules.getName() %></td>
+        <td><%= modules.getCourse().getId() %></td>
         <td>
-            <form action="module.jsp">
-                <input type="hidden" name="id" value="<%= module.getId() %>">
+            <form action="/groups.jsp">
+                <input type="hidden" name="id" value="<%= modules.getId() %>">
                 <button class="btn btn-primary">Group</button>
-            </form> <!-- Bu yerda formani yopish -->
+            </form>
         </td>
     </tr>
     <%

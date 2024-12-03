@@ -20,5 +20,5 @@ public class Groups {
     private String name ;
 
     @ManyToOne
-    private Module module;
+    private Modules modules;
 }

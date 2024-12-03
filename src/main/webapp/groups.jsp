@@ -10,7 +10,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>Region page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <title>Group page</title>
   </head>
   <body>
 
@@ -18,21 +20,17 @@
     String id = request.getParameter("id");
     List<Groups> groups = null;
     if (id != null) {
-      try {
         groups = GroupsRepo.getGroupsByModuleId(Integer.parseInt(id));
-      } catch (NumberFormatException e) {
-        groups = null; // Agar id noto'g'ri bo'lsa, null bo'ladi
-      }
     }
   %>
 
 
   <div class="row">
     <div class="col-6">
-      <form action="add/groups" method="post" class="form">
+      <form action="/add/group" method="post" class="form">
         <div class="input-group">
           <input type="text" name="name" placeholder="Enter group name" class="form-control">
-          <input type="hidden" name="id" value="<%= id != null ? id : "" %>">
+          <input type="hidden" name="moduleId" value="<%=id%>">
           <button class="btn btn-primary">Add</button>
         </div>
       </form>
@@ -56,7 +54,7 @@
     <tr>
       <td><%= group.getId() %></td>
       <td><%= group.getName() %></td>
-      <td><%= group.getModule() != null ? group.getModule().getId() : "N/A" %></td>
+      <td><%= group.getModules() != null ? group.getModules().getId() : "N/A" %></td>
       <td>
         <form action="students.jsp" method="post">
           <input type="hidden" name="id" value="<%= group.getId() %>">

@@ -13,7 +13,7 @@ public class GroupsRepo {
         try {
             entityManager = EMF.createEntityManager();
             return entityManager.createQuery(
-                            "select g from Groups g where g.groups.id = :moduleId", Groups.class)
+                            "select g from Groups g where g.modules.id = :moduleId", Groups.class)
                     .setParameter("moduleId", moduleId)
                     .getResultList();
         } finally {
